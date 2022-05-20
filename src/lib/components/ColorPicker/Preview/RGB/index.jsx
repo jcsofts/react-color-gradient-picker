@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-
+import { rgbaTest,rgbTest } from 'lib/helpers/regexTest';
 import { rgbToHsv } from 'lib/helpers';
 
 import RGBItem from './item';
@@ -8,24 +8,49 @@ function RGB({
     red, green, blue, alpha, updateRgb,
 }) {
     const changeValue = useCallback((field, value) => {
-        if (field === 'alpha') {
-            updateRgb({ alpha: value / 100 });
-
+        let r,g,b,a;
+        const rgba = typeof value === 'string' && rgbaTest(value);
+        const rgb = typeof value === 'string' && rgbTest(value);
+        if(rgba){
+            r=parseInt(rgba[1]);
+            g=parseInt(rgba[2]);
+            b=parseInt(rgba[3]);
+            a=parseFloat(rgba[4]);
+            const color = rgbToHsv({
+                red:r,green:g,blue:b
+            });
+            updateRgb({...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : a });
+            return;
+        }else if(rgb){
+            r=parseInt(rgb[1]);
+            g=parseInt(rgb[2]);
+            b=parseInt(rgb[3]);
+            const color = rgbToHsv({
+                red:r,green:g,blue:b
+            });
+            updateRgb({...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : 1  });
             return;
         }
-
-        const color = rgbToHsv({
-            red, green, blue, [field]: value,
-        });
-
-        updateRgb({ ...color, [field]: value });
+        else{
+            if (field === 'alpha') {
+                updateRgb({ alpha: value / 100 });
+    
+                return;
+            }
+    
+            const color = rgbToHsv({
+                red, green, blue, [field]: value,
+            });
+            updateRgb({ ...color, [field]: value });
+        }
+       
     }, [red, green, blue, updateRgb]);
 
     return (
         <>
             <RGBItem
                 value={red}
-                type="number"
+                type="text"
                 label="R"
                 onChange={value => changeValue('red', value)}
             />

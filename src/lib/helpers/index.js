@@ -5,6 +5,7 @@ export { default as hsvToRgb } from './hsvToRgb';
 export { default as getHue } from './getHue';
 export { default as getAlpha } from './getAlpha';
 export { default as rgbToHex } from './rgbToHex';
+export { default as rgbaToHex } from './rgbaToHex';
 export { default as hexToRgb } from './hexToRgb';
 export { default as setRgba } from './setRgba';
 export { default as updateGradientActivePercent } from './updateGradientActivePercent';

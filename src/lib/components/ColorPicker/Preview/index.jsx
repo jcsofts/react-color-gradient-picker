@@ -13,6 +13,7 @@ function Preview({
                     red={red}
                     green={green}
                     blue={blue}
+                    alpha={alpha}
                     updateRgb={updateRgb}
                 />
 
