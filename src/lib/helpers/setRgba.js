@@ -11,9 +11,8 @@ export default function setRGBA(red, green, blue, alpha) {
         };
 
         if (isValidRGBValue(alpha) === true) {
-            color.alpha = alpha | 0;
+            color.alpha = alpha;
         }
-
         // RGBToHSL(color.r, color.g, color.b);
 
         return color;

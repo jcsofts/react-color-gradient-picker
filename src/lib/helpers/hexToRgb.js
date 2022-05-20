@@ -6,7 +6,7 @@ const regexp = /([0-9A-F])([0-9A-F])([0-9A-F])/i;
 
 export default function hexToRgb(value) {
     const valid = hexRegexp.test(value);
-
+  
     if (valid) {
         if (value[0] === '#') value = value.slice(1, value.length);
 
@@ -19,7 +19,6 @@ export default function hexToRgb(value) {
 
         const color = setRgba(red, green, blue, alpha);
         const hsv = rgbToHsv({ ...color });
-
         return {
             ...color,
             ...hsv,

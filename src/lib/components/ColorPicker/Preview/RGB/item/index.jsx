@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-
+import { rgbaTest,rgbTest } from 'lib/helpers/regexTest';
 import { Input } from 'lib/components/UI';
 
 export default function RGBItem({
@@ -15,13 +15,20 @@ export default function RGBItem({
 
     const onChangeHandler = useCallback(event => {
         const value = +event.target.value;
-
-        if (Number.isNaN(value) || value.length > 3 || value < 0 || value > 255) {
+        const value2 = event.target.value;
+        const rgba = rgbaTest(value2);
+        const rgb = rgbTest(value2);
+        if ((Number.isNaN(value)&& (!rgba&&!rgb)) || (value.length > 3 && (!rgba&&!rgb)) || value < 0 || value > 255) {
             return;
         }
-        setInputValue(event.target.value);
-
-        onChange(value);
+        if(rgba){
+            onChange(value2);
+        }else if(rgb){
+            onChange(value2);
+        }else{
+            onChange(value);
+        }
+        setInputValue(value2);   
     }, [onChange]);
 
     const onBlur = useCallback(() => {

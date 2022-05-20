@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { calculateDegree } from 'lib/helpers';
 import { useMouseEvents } from 'lib/hooks';
 
-function GradientControls({ type, degree, changeGradientControl }) {
+function GradientControls({ type, degree, changeGradientControl, setGradientDegree }) {
     const [disableClick, setDisableClick] = useState(false);
 
     const onClickGradientDegree = useCallback(() => {
@@ -64,6 +64,13 @@ function GradientControls({ type, degree, changeGradientControl }) {
         transform: `rotate(${degree}deg)`,
     };
 
+    const handleDegreeChange = (e) =>{
+        let { value, min, max } = e.target;
+        value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+    
+        setGradientDegree(value)
+    }
+
     return (
         <div className="gradient-controls">
             <div className="gradient-type">
@@ -89,12 +96,18 @@ function GradientControls({ type, degree, changeGradientControl }) {
                                 <div className="gradient-degree-pointer" />
                             </div>
                         </div>
-                        <div className="gradient-degree-value">
+                        <div className="gradient-degree-value-input">
+                             <input type="number" min='0' max="359" value={degree} onChange={handleDegreeChange}  />
+                             <p>
+                                &#176;
+                            </p>
+                        </div>
+                        {/* <div className="gradient-degree-value">
                             <p>
                                 {degree}
                                 &#176;
                             </p>
-                        </div>
+                        </div> */}
                     </div>
                 )
             }
