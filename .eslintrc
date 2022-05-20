@@ -1,93 +1,51 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "react-app"
+  ],
+  "rules": {
+    "max-len": 0,
+    "no-alert": 0,
+    "no-shadow": 0,
+    "no-console": 0,
+    "no-plusplus": 0,
+    "react/jsx-key": 2,
+    "no-unused-vars": 0,
+    "import/no-cycle": 0,
+    "no-return-assign": 0,
+    "react/prop-types": 0,
+    "no-param-reassign": 0,
+    "no-underscore-dangle": 0,
+    "react/button-has-type": 1,
+    "react/no-children-prop": 0,
+    "react/jsx-boolean-value": 0,
+    "react/no-array-index-key": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-wrap-multilines": 0,
+    "react/require-default-props": 0,
+    "react/no-unescaped-entities": 0,
+    "@typescript-eslint/no-shadow": 0,
+    "react/jsx-props-no-spreading": 0,
+    "import/prefer-default-export": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/naming-convention": 0,
+    "jsx-a11y/control-has-associated-label": 0,
+    "import/no-extraneous-dependencies": 0,
+    "object-curly-spacing": [
+      1,
+      "always"
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true,
-            "modules": true
-        },
-        "ecmaVersion": 2020,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react-hooks",
-        "react",
-        "babel"
+    "@typescript-eslint/no-unused-vars": [
+      1,
+      {
+        "vars": "all",
+        "args": "none"
+      }
     ],
-    "rules": {
-        // eslint
-        "indent": ["error", 4, { "SwitchCase": 1 }],
-        "semi": [2, "always"],
-        "camelcase": 0,
-        "max-len": [2, 200, 4],
-        "arrow-parens": [2, "as-needed"],
-        "consistent-return": 0,
-        "import/extensions": 0,
-        "import/no-unresolved": 0,
-        "import/prefer-default-export": 0,
-        "import/no-cycle": 0,
-        "no-bitwise": 0,
-        "no-plusplus": 0,
-        "no-shadow": 0,
-        "no-param-reassign": 0,
-        "no-restricted-syntax": 0,
-        "no-case-declarations": 0,
-        "no-mixed-operators": 0,
-        "no-prototype-builtins": 0,
-        "no-restricted-properties": 0,
-        "no-return-assign": 0,
-        "no-nested-ternary": 0,
-        "no-unused-expressions": 0,
-        // babel plugin
-        "babel/no-unused-expressions": 0,
-        // react plugin
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4],
-        "react/button-has-type": 0,
-        "react/prop-types": 0,
-        "react/jsx-props-no-spreading": 0,
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
-        "react/jsx-first-prop-new-line": [2, "multiline"],
-        "react-hooks/rules-of-hooks": 2,
-        "react-hooks/exhaustive-deps": 2,
-        // jsx-a11y
-        "jsx-a11y/no-static-element-interactions": 0,
-        "jsx-a11y/no-noninteractive-element-interactions": 0,
-        "jsx-a11y/click-events-have-key-events": 0,
-        "jsx-a11y/label-has-associated-control": 0,
-        //eslint-import-plugin
-        "import/order": [
-            "error",
-            {
-                "groups": ["builtin", "external", "internal"],
-                "pathGroups": [
-                    {
-                        "pattern": "react",
-                        "group": "external",
-                        "position": "before"
-                    }
-                ],
-                "pathGroupsExcludedImportTypes": ["react"],
-                "newlines-between": "always"
-            }
-        ]
-    },
-
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "paths": ["src"]
-            }
-        }
-    }
+    
+  }
 }

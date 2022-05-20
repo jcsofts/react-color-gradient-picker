@@ -3,7 +3,7 @@ import babel from '@rollup/plugin-buble';
 import json from '@rollup/plugin-json';
 import commonjs from '@rollup/plugin-commonjs';
 import scss from 'rollup-plugin-scss';
-import copy from 'rollup-plugin-copy-assets';
+import copy from 'rollup-plugin-copy';
 import includePaths from 'rollup-plugin-includepaths';
 
 import pkg from './package.json';
@@ -44,10 +44,11 @@ const config = {
         }),
         json(),
         copy({
-            assets: [
+            targets: [{ src: 'src/lib/assets/*', dest: 'dist/assets' }],
+            /*assets: [
                 // You can include directories
                 'src/lib/assets',
-            ],
+            ],*/
         }),
         includePaths({
             paths: ['src'],

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ColorPicker } from './lib';
 
-function App() {
+function  App() {
     const onChange = (attrs, name) => {
         console.log(attrs, name);
     };

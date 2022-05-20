@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback,useEffect,useMemo, useState } from 'react';
 
 import { useMount } from 'lib/hooks';
 import { rgbToHsv, getRightValue, generateSolidStyle } from 'lib/helpers';
@@ -23,11 +23,18 @@ function Solid({
     const [colorSaturation, setColorSaturation] = useState(100);
     const [colorValue, setColorValue] = useState(100);
 
-    const actions = {
+    useEffect(() => {
+        setColorRed(red);
+        setColorGreen(green);
+        setColorBlue(blue);
+        setColorAlpha(alpha);
+    },[red,green,blue,alpha])
+
+    const actions = useMemo(()=>({
         onChange,
         onStartChange,
         onEndChange,
-    };
+    }),[onChange,onStartChange,onEndChange]);
 
     useMount(() => {
         const { hue, saturation, value } = rgbToHsv({ red: colorRed, green: colorGreen, blue: colorBlue });
