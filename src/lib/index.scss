@@ -140,12 +140,20 @@
     .picker-area {
         display: flex;
         flex-direction: column;
-        padding: 0 16px;
+        padding: 0px;
+        position:relative;
 
         &.gradient-tab {
             .picking-area {
                 margin-bottom: 10px;
             }
+        }
+
+        .extra-control{
+            position: absolute;
+            right:-8px;
+            top:-8px;
+            z-index:1;
         }
 
         .picking-area {

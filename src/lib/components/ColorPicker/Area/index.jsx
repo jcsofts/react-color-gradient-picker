@@ -24,9 +24,11 @@ function Area({
     updateGradientLeft,
     addPoint,
     removePoint,
+    extraControl
 }) {
     return (
         <div className="picker-area">
+            {extraControl && extraControl}
             <Picking
                 red={red}
                 green={green}

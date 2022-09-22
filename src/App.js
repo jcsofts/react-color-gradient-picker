@@ -7,6 +7,10 @@ function App() {
         //console.log(attrs, name);
     };
 
+    const button=(
+        <div style={{ position: 'absolute',top:-8,right:-8,zIndex:"1" }}>X</div>
+    );
+
     return (
         <div style={{ display: 'flex', textAlign: 'center' }}>
             <div style={{ marginRight: '50px' }}>
@@ -15,6 +19,7 @@ function App() {
                     onStartChange={color => onChange(color, 'start')}
                     onChange={color => onChange(color, 'change')}
                     onEndChange={color => onChange(color, 'end')}
+                    extraControl={button}
                 />
             </div>
             <div>
@@ -24,6 +29,7 @@ function App() {
                     onChange={color => onChange(color, 'change')}
                     onEndChange={color => onChange(color, 'end')}
                     isGradient
+                    extraControl={button}
                 />
             </div>
         </div>

@@ -46,8 +46,9 @@ function Alpha({
     }, [width]);
 
     const mouseMoveHandler = useCallback((event, { startX, positionX }) => {
+        
         const { positions, alpha } = changeObjectPositions(event, { startX, positionX });
-
+        
         updateRgb({ alpha }, 'onChange');
 
         return positions;

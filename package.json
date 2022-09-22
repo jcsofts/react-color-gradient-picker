@@ -1,7 +1,7 @@
 {
   "name": "react-solid-gradient-picker",
   "description": "Color picker for react",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "main": "./dist/index-cjs.js",
   "module": "./dist/index-es.js",
   "browser": "./dist/index-cjs.js",
@@ -15,10 +15,6 @@
   },
   "bugs": {
     "url": "https://github.com/jcsofts/react-color-gradient-picker/issues"
-  },
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
@@ -57,8 +53,6 @@
     "prettier": "^2.5.1",
     "prettier-eslint": "^13.0.0",
     "prettier-plugin-style-order": "^0.2.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
     "rollup": "^2.61.1",
     "rollup-plugin-copy": "^3.4.0",
@@ -991,5 +985,9 @@
     "yargs": "^16.2.0",
     "yargs-parser": "^20.2.9",
     "yocto-queue": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   }
 }

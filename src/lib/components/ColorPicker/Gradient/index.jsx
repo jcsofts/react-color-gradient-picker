@@ -8,7 +8,7 @@ import Preview from '../Preview';
 import GradientControls from './GradientControls';
 
 function Gradient({
-    points, type, degree, onChange, onStartChange, onEndChange,
+    points, type, degree, onChange, onStartChange, onEndChange,extraControl=null
 }) {
     const [activePointIndex, setActivePointIndex] = useState(0);
     const [gradientPoints, setGradientPoints] = useState(points);
@@ -118,7 +118,7 @@ function Gradient({
         red = getRightValue(red, colorRed);
         green = getRightValue(green, colorGreen);
         blue = getRightValue(blue, colorBlue);
-        alpha = getRightValue(alpha || 1, colorAlpha);
+        alpha = getRightValue(alpha/* || 1*/, colorAlpha);//allow 0
         hue = getRightValue(hue, colorHue);
         saturation = getRightValue(saturation, colorSaturation);
         value = getRightValue(value, colorValue);
@@ -218,6 +218,7 @@ function Gradient({
                 updateGradientLeft={updateGradientLeft}
                 addPoint={addPoint}
                 removePoint={removePoint}
+                extraControl={extraControl}
             />
             <Preview
                 red={colorRed}

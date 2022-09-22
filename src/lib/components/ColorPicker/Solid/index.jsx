@@ -14,6 +14,7 @@ function Solid({
     onChange,
     onStartChange,
     onEndChange,
+    extraControl=null
 }) {
     const [colorRed, setColorRed] = useState(red);
     const [colorGreen, setColorGreen] = useState(green);
@@ -45,7 +46,7 @@ function Solid({
         red = getRightValue(red, colorRed);
         green = getRightValue(green, colorGreen);
         blue = getRightValue(blue, colorBlue);
-        alpha = getRightValue(alpha || 1, colorAlpha);
+        alpha = getRightValue(alpha/* || 1*/, colorAlpha);//allow 0
         hue = getRightValue(hue, colorHue);
         saturation = getRightValue(saturation, colorSaturation);
         value = getRightValue(value, colorValue);
@@ -87,6 +88,7 @@ function Solid({
                 saturation={colorSaturation}
                 value={colorValue}
                 updateRgb={updateColor}
+                extraControl={extraControl}
             />
             <Preview
                 red={colorRed}
