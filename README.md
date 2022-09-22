@@ -1,4 +1,5 @@
 # React Color Gradient Picker
+this repo is fork from arthay/react-color-gradient-picker and change some things 
 
 ## Table of Contents
 
@@ -11,19 +12,19 @@
 To install, you can use [npm](https://npmjs.org/) or [yarn](https://yarnpkg.com):
 
 
-    $ npm install react-color-gradient-picker
-    $ yarn add react-color-gradient-picker
+    $ npm install react-solid-gradient-picker
+    $ yarn add react-solid-gradient-picker
 
 ## Examples
 
-Here is a simple examples of react-color-gradient-picker being used in an app:
+Here is a simple examples of react-solid-gradient-picker being used in an app:
 
 ### Color Picker
 ```jsx
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ColorPicker } from 'react-color-gradient-picker';
-import 'react-color-gradient-picker/dist/index.css';
+import { ColorPicker } from 'react-solid-gradient-picker';
+import 'react-solid-gradient-picker/dist/index.css';
 
 const color = {
     red: 255,
@@ -57,8 +58,8 @@ ReactDOM.render(<App />, document.getElementById('app-id'));
 ```jsx
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ColorPicker } from 'react-color-gradient-picker';
-import 'react-color-gradient-picker/dist/index.css';
+import { ColorPicker } from 'react-solid-gradient-picker';
+import 'react-solid-gradient-picker/dist/index.css';
 
 const gradient = {
     points: [
@@ -102,6 +103,3 @@ function App() {
 
 ReactDOM.render(<App />, document.getElementById('app-id'));
 ```
-## Demo
-
-* [Solid and gradient pickers live demo](https://arthay.github.io/react-color-gradient-picker/)

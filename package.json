@@ -1,7 +1,7 @@
 {
   "name": "react-solid-gradient-picker",
   "description": "Color picker for react",
-  "version": "0.1.4",
+  "version": "0.1.9",
   "main": "./dist/index-cjs.js",
   "module": "./dist/index-es.js",
   "browser": "./dist/index-cjs.js",
@@ -68,7 +68,7 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3300 react-scripts start",
     "build": "rimraf dist && rollup -c",
     "build:demo": "react-scripts build",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"

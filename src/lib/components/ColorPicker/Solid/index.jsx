@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState,useMemo } from 'react';
 
 import { useMount } from 'lib/hooks';
 import { rgbToHsv, getRightValue, generateSolidStyle } from 'lib/helpers';
@@ -24,11 +24,12 @@ function Solid({
     const [colorValue, setColorValue] = useState(100);
     const [key_, setKey] = useState(0)
 
-    const actions = {
+    const actions = useMemo(()=>{
+        return {
         onChange,
         onStartChange,
         onEndChange,
-    };
+    }},[onChange,onStartChange,onEndChange]);
 
     useMount(() => {
         const { hue, saturation, value } = rgbToHsv({ red: colorRed, green: colorGreen, blue: colorBlue });
@@ -44,7 +45,7 @@ function Solid({
         red = getRightValue(red, colorRed);
         green = getRightValue(green, colorGreen);
         blue = getRightValue(blue, colorBlue);
-        alpha = getRightValue(alpha, colorAlpha);
+        alpha = getRightValue(alpha || 1, colorAlpha);
         hue = getRightValue(hue, colorHue);
         saturation = getRightValue(saturation, colorSaturation);
         value = getRightValue(value, colorValue);
@@ -69,8 +70,7 @@ function Solid({
             value,
             style: generateSolidStyle(red, green, blue, alpha),
         });
-    }, [
-        colorRed, colorGreen, colorBlue, colorAlpha,
+    }, [key_, colorRed, colorGreen, colorBlue, colorAlpha,
         colorHue, colorSaturation, colorValue,
         actions,
     ]);

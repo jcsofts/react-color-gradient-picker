@@ -19,7 +19,7 @@ function RGB({
             const color = rgbToHsv({
                 red:r,green:g,blue:b
             });
-            updateRgb({...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : a });
+            updateRgb({ ...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : a });
             return;
         }else if(rgb){
             r=parseInt(rgb[1]);
@@ -28,7 +28,7 @@ function RGB({
             const color = rgbToHsv({
                 red:r,green:g,blue:b
             });
-            updateRgb({...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : 1  });
+            updateRgb({ ...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : 1  });
             return;
         }
         else{

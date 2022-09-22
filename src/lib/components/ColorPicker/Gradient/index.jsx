@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState,useMemo } from 'react';
 
 import { useMount } from 'lib/hooks';
 import { rgbToHsv, getRightValue, generateGradientStyle } from 'lib/helpers';
@@ -23,11 +23,12 @@ function Gradient({
     const [gradientType, setGradientType] = useState(type);
     const [gradientDegree, setGradientDegree] = useState(degree);
 
-    const actions = {
+    const actions = useMemo(()=>{
+        return {
         onChange,
         onStartChange,
         onEndChange,
-    };
+    }},[onChange,onStartChange,onEndChange]);
 
     useMount(() => {
         const { hue, saturation, value } = rgbToHsv({ red: colorRed, green: colorGreen, blue: colorBlue });
@@ -117,7 +118,7 @@ function Gradient({
         red = getRightValue(red, colorRed);
         green = getRightValue(green, colorGreen);
         blue = getRightValue(blue, colorBlue);
-        alpha = getRightValue(alpha, colorAlpha);
+        alpha = getRightValue(alpha || 1, colorAlpha);
         hue = getRightValue(hue, colorHue);
         saturation = getRightValue(saturation, colorSaturation);
         value = getRightValue(value, colorValue);
