@@ -6,6 +6,8 @@ import Hue from './Hue';
 import Alpha from './Alpha';
 import GradientPoints from './GradientPoints';
 
+import { hexToRgb } from 'lib/helpers';
+
 function Area({
     red,
     green,
@@ -26,6 +28,23 @@ function Area({
     removePoint,
     extraControl
 }) {
+    const ifEyeDropper = !!window.EyeDropper;
+
+    const handleOpenEyeDropper = async () => {
+        const eyeDropper = new EyeDropper();
+
+        eyeDropper
+            .open()
+            .then((result) => {
+                if (result && result.sRGBHex) {
+                    updateRgb(hexToRgb(result.sRGBHex));
+                }
+            })
+            .catch((e) => {
+                console.error("ERROR: ", e);
+            });
+    };
+
     return (
         <div className="picker-area">
             {extraControl && extraControl}
@@ -65,6 +84,14 @@ function Area({
                     gradientDegree={degree}
                     gradientType={type}
                     isGradient={isGradient}
+                    eyeDropper={
+                        ifEyeDropper && (
+                            <div className="eyeDropper" onClick={handleOpenEyeDropper}>
+                                {/* <i className="fas fa-eye-dropper"></i> */}
+                                <button >Eye Dropper</button>
+                            </div>
+                        )
+                    }
                 />
 
                 <div className="color-hue-alpha">

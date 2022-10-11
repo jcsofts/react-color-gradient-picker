@@ -47,5 +47,8 @@
       }
     ],
     
+  },
+  "globals": {
+     "EyeDropper": "readonly"
   }
 }
