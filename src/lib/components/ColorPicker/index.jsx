@@ -12,7 +12,7 @@ function ColorPicker({
     onEndChange,
     extraControl=null
 }) {
-    console.log("ColorPicker",color);
+    
     return (
         <div className="ui-color-picker">
             {
