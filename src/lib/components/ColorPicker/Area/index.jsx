@@ -7,7 +7,6 @@ import Alpha from './Alpha';
 import GradientPoints from './GradientPoints';
 import { rgbTest } from 'lib/helpers/regexTest';
 import { hexToRgb,parseRgb,rgbToHex } from 'lib/helpers';
-import pickerSvg from "lib/assets/images/color-picker.svg"
 
 function Area({
     red,
@@ -29,7 +28,7 @@ function Area({
     removePoint,
     extraControl
 }) {
-    const ifEyeDropper = !!window.EyeDropper;
+    /*const ifEyeDropper = !!window.EyeDropper;
 
     const handleOpenEyeDropper = () => {
         const eyeDropper = new EyeDropper();
@@ -51,7 +50,18 @@ function Area({
             .catch((e) => {
                 console.error("ERROR: ", e);
             });
-    };
+    };*/
+
+    const handleEyeDropChange=(hexColor)=>{
+        if(!hexColor) return;
+        if(rgbTest(hexColor)){
+            const rgbObj=parseRgb(hexColor);
+            const hex=rgbToHex(rgbObj.red,rgbObj.green,rgbObj.blue);
+            updateRgb(hexToRgb(hex));
+        }else if(hexColor.startsWith('#')){
+            updateRgb(hexToRgb(hexColor));
+        }
+    }
 
     return (
         <div className="picker-area">
@@ -92,15 +102,7 @@ function Area({
                     gradientDegree={degree}
                     gradientType={type}
                     isGradient={isGradient}
-                    eyeDropper={
-                        ifEyeDropper && (
-                            <div className="eyeDropper" onClick={handleOpenEyeDropper}>
-                                <div  style={{ width:"16px",height:"16px" }}>
-                                    {pickerSvg}
-                                </div>
-                            </div>
-                        )
-                    }
+                    onEyeDropChange={handleEyeDropChange}
                 />
 
                 <div className="color-hue-alpha">

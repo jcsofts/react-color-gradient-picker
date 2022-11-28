@@ -30,7 +30,7 @@ const config = {
         name: 'react-color-gradient-picker',
     }],
     plugins: [
-        svg(),
+        svg({base64:true}),
         scss({
             output: 'dist/index.css',
         }),

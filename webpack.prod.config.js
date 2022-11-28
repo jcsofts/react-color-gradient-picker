@@ -1,12 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const InterpolateHtmlPlugin = require('interpolate-html-plugin');
-//const nodeExternals = require('webpack-node-externals');
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 const TerserPlugin = require("terser-webpack-plugin");
-//const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const pkg = require('./package.json');
 const webpack = require('webpack');
-const fs = require('fs');
+//const fs = require('fs');
 const path = require('path');
 
 const name = pkg.name;
@@ -23,52 +22,41 @@ module.exports = (env = {}) => {
                     parallel: true,
                     terserOptions: {
                         compress: {
-                            //drop_console: true,
+                            drop_console: false,
                         }
                     }
                 })
             ]
         };
-        
         plugins = [
+            new CleanWebpackPlugin(),
             new webpack.BannerPlugin(`${name} - ${pkg.version}`),
+            new MiniCssExtractPlugin({
+                filename: `index.css`,
+                ignoreOrder: true,
+            }),
+        ]
+    } else {
+        plugins = [
             /*new MiniCssExtractPlugin({
-                filename: `${name}-app.css`,
+                filename: `${name}.css`,
                 ignoreOrder: true,
             }),*/
         ]
-    } else {
-        const index = 'public/index.html';
-        const indexDev = 'public/index.html';
-        plugins=[
-            /*new MiniCssExtractPlugin({
-                filename: `${name}-app.css`,
-                ignoreOrder: true,
-            }),*/
-            new HtmlWebpackPlugin({
-                template: fs.existsSync(indexDev) ? indexDev : index
-            }),
-            new InterpolateHtmlPlugin({
-                PUBLIC_URL: 'static' // can modify `static` to another name or get it from `process`
-            })
-        ];
-        
     }
 
     let output = {
-        filename: `${name}-app.js`,
+        filename: `index.js`,
         path: path.resolve(__dirname, './dist'),
+        library: name, 
+        libraryTarget: 'umd'
     }
-
-    /*if (env.production) {
-        output = { ...output, library: name, libraryTarget: 'umd', }
-    }*/
 
     return {
         devtool: env.production ? false : 'inline-source-map',
-        watch: true,
+        //watch: env.production ? false : true,
         mode: env.production ? 'production' : 'development',
-        entry: './src/index.js',
+        entry: './src',
         output: output,
         module: {
             rules: [
@@ -85,7 +73,7 @@ module.exports = (env = {}) => {
                 {
                     test: /\.css$/,
                     use: [
-                        //MiniCssExtractPlugin.loader,
+                        MiniCssExtractPlugin.loader,
                         "style-loader",
                         'css-loader'
                     ]
@@ -112,32 +100,15 @@ module.exports = (env = {}) => {
                 }
             ],
         },
-        externals: [],
+        externals: [nodeExternals()],
         optimization: optimization,
         plugins: plugins,
         watchOptions: {
             ignored: /node_modules/
         },
         devServer: {
-            //watch:true,
-            port: 3300,
-            hot: true,
-            proxy:{
-                "/api": {
-                    target: "https://test.flowtrack.co",
-                    //target: "https://app.flowtrack.co",
-                    //target: "https://login.flowtrack.co.beta.procrm.co",
-                    changeOrigin: true,
-                    secure: false,
-                },
-                "/resources": {
-                    target: "https://test.flowtrack.co",
-                    //target: "https://app.flowtrack.co",
-                    //target: "https://login.flowtrack.co.beta.procrm.co",
-                    changeOrigin: true,
-                    secure: false,
-                },
-            }
+            port: 8000,
+            hot: true
         },
         resolve: {
             extensions: ['.js', ".jsx", '.json', '.ts', '.tsx'],
