@@ -46,6 +46,7 @@ function GradientPoints({
                 points && points.map((point, index) => (
                     <GradientPoint
                         key={index}
+                        length={points.length}
                         activePointIndex={activePointIndex}
                         index={index}
                         point={point}

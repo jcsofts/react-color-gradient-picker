@@ -5,8 +5,7 @@ import Preview from './Preview';
 import Hue from './Hue';
 import Alpha from './Alpha';
 import GradientPoints from './GradientPoints';
-import { rgbTest } from 'lib/helpers/regexTest';
-import { hexToRgb,parseRgb,rgbToHex } from 'lib/helpers';
+
 
 function Area({
     red,
@@ -52,7 +51,7 @@ function Area({
             });
     };*/
 
-    const handleEyeDropChange=(hexColor)=>{
+    /*const handleEyeDropChange=(hexColor)=>{
         if(!hexColor) return;
         if(rgbTest(hexColor)){
             const rgbObj=parseRgb(hexColor);
@@ -61,7 +60,7 @@ function Area({
         }else if(hexColor.startsWith('#')){
             updateRgb(hexToRgb(hexColor));
         }
-    }
+    }*/
 
     return (
         <div className="picker-area">
@@ -102,7 +101,7 @@ function Area({
                     gradientDegree={degree}
                     gradientType={type}
                     isGradient={isGradient}
-                    onEyeDropChange={handleEyeDropChange}
+                    onEyeDropChange={updateRgb}
                 />
 
                 <div className="color-hue-alpha">

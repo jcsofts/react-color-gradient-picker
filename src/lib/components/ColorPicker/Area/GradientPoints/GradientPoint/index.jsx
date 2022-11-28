@@ -2,11 +2,14 @@ import React, { useCallback } from 'react';
 
 import { updateGradientActivePercent } from 'lib/helpers';
 import { useMouseEvents } from 'lib/hooks';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 
 function GradientPoint({
     point,
     activePointIndex,
     index,
+    length,
     width,
     positions,
     changeActivePointIndex,
@@ -78,7 +81,20 @@ function GradientPoint({
         event.stopPropagation();
     };
 
-    return (
+    return length>2?(
+        <Tippy content="double click to remove">
+            <div
+                className={`picker-pointer${activeClassName}`}
+                onClick={pointerClickHandler}
+                style={pointStyle}
+                onMouseDown={onMouseDown}
+                onDoubleClick={() => removePoint(index)}
+            >
+                <span className={`child-point${activeClassName}`} />
+            </div>
+        </Tippy>
+        
+    ):(
         <div
             className={`picker-pointer${activeClassName}`}
             onClick={pointerClickHandler}
