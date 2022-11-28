@@ -8,7 +8,7 @@ function App() {
     };
 
     const button=(
-        <div style={{ position: 'absolute',top:-8,right:-8,zIndex:"1" }}>X</div>
+        <div style={{ position: 'absolute',top:-8,right:-8,zIndex:"1" }}><i className="far fa-times-circle"></i></div>
     );
 
     return (
