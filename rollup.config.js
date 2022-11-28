@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import scss from 'rollup-plugin-scss';
 import copy from 'rollup-plugin-copy';
 import includePaths from 'rollup-plugin-includepaths';
+import svg from 'rollup-plugin-svg'
 
 import pkg from './package.json';
 
@@ -29,6 +30,7 @@ const config = {
         name: 'react-color-gradient-picker',
     }],
     plugins: [
+        svg(),
         scss({
             output: 'dist/index.css',
         }),
@@ -55,6 +57,7 @@ const config = {
             extensions: ['.js', '.jsx'],
 
         }),
+        
     ],
 };
 

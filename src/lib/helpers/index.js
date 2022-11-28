@@ -11,4 +11,5 @@ export { default as setRgba } from './setRgba';
 export { default as updateGradientActivePercent } from './updateGradientActivePercent';
 export { default as calculateDegree } from './calculateDegree';
 export { default as getRightValue } from './getRightValue';
+export { default as parseRgb } from "./parseRgb";
 export * from './generateStyles';

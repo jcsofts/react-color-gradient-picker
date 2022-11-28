@@ -5,8 +5,9 @@ import Preview from './Preview';
 import Hue from './Hue';
 import Alpha from './Alpha';
 import GradientPoints from './GradientPoints';
-
-import { hexToRgb } from 'lib/helpers';
+import { rgbTest } from 'lib/helpers/regexTest';
+import { hexToRgb,parseRgb,rgbToHex } from 'lib/helpers';
+import pickerSvg from "lib/assets/images/color-picker.svg"
 
 function Area({
     red,
@@ -30,14 +31,21 @@ function Area({
 }) {
     const ifEyeDropper = !!window.EyeDropper;
 
-    const handleOpenEyeDropper = async () => {
+    const handleOpenEyeDropper = () => {
         const eyeDropper = new EyeDropper();
 
         eyeDropper
             .open()
             .then((result) => {
                 if (result && result.sRGBHex) {
-                    updateRgb(hexToRgb(result.sRGBHex));
+                    if(rgbTest(result.sRGBHex)){
+                        const rgbObj=parseRgb(result.sRGBHex);
+                        const hex=rgbToHex(rgbObj.red,rgbObj.green,rgbObj.blue);
+                        updateRgb(hexToRgb(hex));
+                    }else if(result.sRGBHex.startsWith('#')){
+                        updateRgb(hexToRgb(result.sRGBHex));
+                    }
+                    
                 }
             })
             .catch((e) => {
@@ -87,8 +95,7 @@ function Area({
                     eyeDropper={
                         ifEyeDropper && (
                             <div className="eyeDropper" onClick={handleOpenEyeDropper}>
-                                {/* <i className="fas fa-eye-dropper"></i> */}
-                                <button >Eye Dropper</button>
+                                <img alt="" src={pickerSvg} style={{ width:"18px",height:"18px" }} />
                             </div>
                         )
                     }
