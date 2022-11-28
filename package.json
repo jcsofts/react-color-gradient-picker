@@ -1,7 +1,7 @@
 {
   "name": "react-solid-gradient-picker",
   "description": "Color picker for react",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "./dist/index-cjs.js",
   "module": "./dist/index-es.js",
   "browser": "./dist/index-cjs.js",
@@ -61,13 +61,15 @@
     "rollup-plugin-includepaths": "^0.2.4",
     "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-svg": "^2.0.0",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
-    "start": "PORT=3300 react-scripts start",
+    "start": "webpack-cli serve --env development --progress --config webpack.dev.config.js",
     "build": "rimraf dist && rollup -c",
     "build:demo": "react-scripts build",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+    "eject": "react-scripts eject"
   },
   "tags": [
     "react",
@@ -943,6 +945,7 @@
     "wbuf": "^1.7.3",
     "webidl-conversions": "^6.1.0",
     "webpack": "^5.65.0",
+    "webpack-cli": "^5.0.0",
     "webpack-dev-middleware": "^5.3.0",
     "webpack-dev-server": "^4.6.0",
     "webpack-manifest-plugin": "^4.0.2",

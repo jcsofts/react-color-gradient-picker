@@ -95,7 +95,9 @@ function Area({
                     eyeDropper={
                         ifEyeDropper && (
                             <div className="eyeDropper" onClick={handleOpenEyeDropper}>
-                                <img alt="" src={pickerSvg} style={{ width:"18px",height:"18px" }} />
+                                <div  style={{ width:"16px",height:"16px" }}>
+                                    {pickerSvg}
+                                </div>
                             </div>
                         )
                     }
