@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 
 import { generateSolidStyle, generateGradientStyle } from 'lib/helpers';
@@ -11,6 +12,7 @@ function Preview({
     points,
     gradientType,
     gradientDegree,
+    eyeDropper = null
 }) {
     const [style, setStyle] = useState({});
 
@@ -31,6 +33,7 @@ function Preview({
     return (
         <div className="preview-area">
             <div className="preview-box" style={style} />
+            { eyeDropper }
         </div>
     );
 }
