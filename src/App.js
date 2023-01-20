@@ -4,7 +4,7 @@ import { ColorPicker } from './lib';
 
 function App() {
     const onChange = (attrs, name) => {
-        //console.log(attrs, name);
+        console.log(attrs, name);
     };
 
     const button=(
@@ -20,6 +20,7 @@ function App() {
                     onChange={color => onChange(color, 'change')}
                     onEndChange={color => onChange(color, 'end')}
                     extraControl={button}
+                    //color={null}
                 />
             </div>
             <div>

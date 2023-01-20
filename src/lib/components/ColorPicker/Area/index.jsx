@@ -51,16 +51,9 @@ function Area({
             });
     };*/
 
-    /*const handleEyeDropChange=(hexColor)=>{
-        if(!hexColor) return;
-        if(rgbTest(hexColor)){
-            const rgbObj=parseRgb(hexColor);
-            const hex=rgbToHex(rgbObj.red,rgbObj.green,rgbObj.blue);
-            updateRgb(hexToRgb(hex));
-        }else if(hexColor.startsWith('#')){
-            updateRgb(hexToRgb(hexColor));
-        }
-    }*/
+    const handleEyeDropChange=(rgb)=>{
+        updateRgb(rgb,"onEndChange");
+    }
 
     return (
         <div className="picker-area">
@@ -101,7 +94,7 @@ function Area({
                     gradientDegree={degree}
                     gradientType={type}
                     isGradient={isGradient}
-                    onEyeDropChange={updateRgb}
+                    onEyeDropChange={handleEyeDropChange}
                 />
 
                 <div className="color-hue-alpha">

@@ -1,11 +1,11 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useMemo } from 'react';
 
 import { generateSolidStyle, generateGradientStyle } from 'lib/helpers';
-import { EyeDropper } from "lib/components/EyeDropper";
-import pickerSvg from "lib/assets/images/color-picker.svg"
+
 import { rgbTest } from 'lib/helpers/regexTest';
 import { hexToRgb,parseRgb,rgbToHex } from 'lib/helpers';
+import { yiq } from 'yiq';
 
 function Preview({
     red,
@@ -58,10 +58,17 @@ function Preview({
         setStyle({ backgroundColor: style });
     }, [points, gradientDegree, gradientType, isGradient, red, green, blue, alpha]);
 
+    const iconColor=useMemo(()=>{
+        
+        return yiq(`#${rgbToHex(red, green, blue)}`);
+    },[red, green, blue])
+
     return (
         <div className="preview-area">
             <div className="preview-box" style={style} onClick={handleOpenEyeDropper}>
-                {ifEyeDropper && <img src={pickerSvg} style={{ width:"16px",height:"16px" }} alt=""/>}
+                {ifEyeDropper && (
+                    <i className="fas fa-eye-dropper" style={{ color:iconColor }}></i>
+                )}
             </div>
         </div>
     );
