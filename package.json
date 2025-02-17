@@ -1,7 +1,7 @@
 {
   "name": "react-solid-gradient-picker",
   "description": "Color picker for react",
-  "version": "0.2.9",
+  "version": "0.2.12",
   "main": "./dist/index-cjs.js",
   "module": "./dist/index-es.js",
   "browser": "./dist/index-cjs.js",
@@ -1001,7 +1001,7 @@
     "yocto-queue": "^0.1.0"
   },
   "peerDependencies": {
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

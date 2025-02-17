@@ -46,10 +46,13 @@ function Solid({
         red = getRightValue(red, colorRed);
         green = getRightValue(green, colorGreen);
         blue = getRightValue(blue, colorBlue);
-        alpha = getRightValue(alpha/* || 1*/, colorAlpha);//allow 0
+        alpha = getRightValue(alpha, colorAlpha);//allow 0
         hue = getRightValue(hue, colorHue);
         saturation = getRightValue(saturation, colorSaturation);
         value = getRightValue(value, colorValue);
+        if(alpha==null || alpha===undefined){
+            alpha=1;
+        }
         setKey(key_+1)
         setColorRed(red);
         setColorGreen(green);
@@ -75,6 +78,10 @@ function Solid({
         colorHue, colorSaturation, colorValue,
         actions,
     ]);
+
+    const handleUpdateRgb=(rgb)=>{
+        updateColor(rgb,"onEndChange")
+    }
 
     return (
         <>

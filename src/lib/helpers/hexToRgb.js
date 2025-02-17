@@ -21,6 +21,9 @@ export default function hexToRgb(value) {
         if(value.length>6){
             alpha = parseInt(value.substr(6, 2), 16) / 255;
         }
+        if(alpha==null || alpha===undefined){
+            alpha=1;
+        }
 
         const color = setRgba(red, green, blue, alpha);
         const hsv = rgbToHsv({ ...color });

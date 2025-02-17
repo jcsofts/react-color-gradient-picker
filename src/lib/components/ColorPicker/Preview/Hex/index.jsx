@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import { rgbToHex,rgbaToHex, hexToRgb } from 'lib/helpers';
-import { Input } from 'lib/components/UI';
+import { Input } from 'lib/components/UI'
 
 function Hex({
     red, green, blue,alpha, updateRgb,
@@ -13,11 +13,13 @@ function Hex({
         if (progress) {
             return;
         }
-        if(alpha){
+        
+        if(alpha!==null && alpha !== undefined){
             hex = rgbaToHex(red, green, blue,alpha);
         }else{
-            hex = rgbToHex(red, green, blue);
+            hex = rgbToHex(red, green, blue,1);
         }
+        //hex = rgbaToHex(red, green, blue,alpha);
         setHexValue(hex);
     }, [red, green, blue,alpha, progress]);
 
@@ -25,7 +27,7 @@ function Hex({
         setHexValue(event.target.value);
         const color = hexToRgb(event.target.value);
         if (color) {
-            updateRgb(color);
+            updateRgb(color,"onEndChange");
         }
     }, [setHexValue, updateRgb]);
 

@@ -19,7 +19,7 @@ function RGB({
             const color = rgbToHsv({
                 red:r,green:g,blue:b
             });
-            updateRgb({ ...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : a });
+            updateRgb({ ...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : a },"onEndChange");
             return;
         }else if(rgb){
             r=parseInt(rgb[1]);
@@ -28,12 +28,12 @@ function RGB({
             const color = rgbToHsv({
                 red:r,green:g,blue:b
             });
-            updateRgb({ ...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : 1  });
+            updateRgb({ ...color, 'red' : r, 'green' : g, 'blue' : b, 'alpha' : 1  },"onEndChange");
             return;
         }
         else{
             if (field === 'alpha') {
-                updateRgb({ alpha: value / 100 });
+                updateRgb({ alpha: value / 100 },"onEndChange");
     
                 return;
             }
@@ -41,7 +41,7 @@ function RGB({
             const color = rgbToHsv({
                 red, green, blue, [field]: value,
             });
-            updateRgb({ ...color, [field]: value });
+            updateRgb({ ...color, [field]: value },"onEndChange");
         }
        
     }, [red, green, blue, updateRgb]);
